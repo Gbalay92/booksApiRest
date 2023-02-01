@@ -9,4 +9,10 @@ public interface IBookService {
     List<Book> findAll();
 
     Book saveBook(Book book);
+
+    Book findBookById(Long id);
+
+    Book updateBookById(Book book);
+
+    void deleteBookById(Long id);
 }

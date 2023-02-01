@@ -1,6 +1,7 @@
 package com.rcv.initialspring.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,26 @@ public class BookServiceImpl implements IBookService {
         return book;
     }
 
+    @Override
+    public Book findBookById(Long id) {
+        Optional op = booksRepo.findById(id);
+        if (op.isPresent()) {
+            return (Book) op.get();
+        }
+        return null;
+    }
+
+    @Override
+    public Book updateBookById(Book book) {
+        Optional op = booksRepo.findById(book.getId());
+        if (op.isPresent()) {
+            return booksRepo.save(book);
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteBookById(Long id) {
+        booksRepo.deleteById(id);
+    }
 }
