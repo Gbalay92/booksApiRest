@@ -13,40 +13,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rcv.initialspring.models.Book;
-import com.rcv.initialspring.services.IBookService;
+import com.rcv.initialspring.models.Author;
+import com.rcv.initialspring.services.IAuthorService;
 
 @RestController
-@RequestMapping("/books")
-public class BookController {
+@RequestMapping("/authors")
+public class AuthorController {
 
     @Autowired
-    IBookService bookService;
+    IAuthorService authorService;
 
     @GetMapping("/")
-    public List<Book> getAllBooks() {
-        return bookService.findAll();
+    public List<Author> getAllAuthors() {
+        return authorService.findAll();
     }
 
     @PostMapping("/")
-    public Book saveBook(@RequestBody Book book) {
-        return bookService.saveBook(book);
+    public Author saveAuthor(@RequestBody Author author) {
+        return authorService.saveAuthor(author);
     }
 
     @GetMapping("/{id}") // de base la variable es String, hay que especificar en el metodo el tipo
-    public Book getBookbyId(@PathVariable("id") Long id) {
-        return bookService.findBookById(id);
+    public Author getAuthorbyId(@PathVariable("id") Long id) {
+        return authorService.findAuthorById(id);
     }
 
     @PutMapping("/")
-    public Book updateBookById(@RequestBody Book book) {
-        return bookService.updateBookById(book);
+    public Author updateAuthorById(@RequestBody Author author) {
+        return authorService.updateAuthorById(author);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteBookById(@PathVariable Long id) {
+    public String deleteAuthorById(@PathVariable Long id) {
         try {
-            bookService.deleteBookById(id);
+            authorService.deleteAuthorById(id);
         } catch (EmptyResultDataAccessException e) {
             return "autor no encontrado";
         }
