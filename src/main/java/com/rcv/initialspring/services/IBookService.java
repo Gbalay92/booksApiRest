@@ -15,4 +15,6 @@ public interface IBookService {
     Book updateBookById(Book book);
 
     void deleteBookById(Long id);
+
+    List<Book> finByExample(Book book);
 }

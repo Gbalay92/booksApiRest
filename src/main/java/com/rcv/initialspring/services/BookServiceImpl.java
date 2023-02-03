@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.rcv.initialspring.models.Book;
 import com.rcv.initialspring.repositories.BooksRepository;
 
 @Service
+@Primary
 public class BookServiceImpl implements IBookService {
 
     @Autowired
@@ -47,5 +50,10 @@ public class BookServiceImpl implements IBookService {
     @Override
     public void deleteBookById(Long id) {
         booksRepo.deleteById(id);
+    }
+
+    @Override
+    public List<Book> finByExample(Book book) {
+        return booksRepo.findAll(Example.of(book));
     }
 }

@@ -53,4 +53,11 @@ public class AuthorController {
 
         return "autor borrado";
     }
+
+    @PostMapping("/authorList")
+    public List<Author> saveAuthorList(@RequestBody List<Author> authorList) {
+        Iterable<Author> authors = authorList;
+        return authorService.saveAuthorList(authors);
+    }
+
 }

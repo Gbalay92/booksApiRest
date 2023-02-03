@@ -15,4 +15,6 @@ public interface IAuthorService {
     Author updateAuthorById(Author author);
 
     void deleteAuthorById(Long id);
+
+    List<Author> saveAuthorList(Iterable<Author> authorList);
 }

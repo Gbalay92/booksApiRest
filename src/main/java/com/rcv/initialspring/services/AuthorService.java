@@ -48,4 +48,9 @@ public class AuthorService implements IAuthorService {
     public void deleteAuthorById(Long id) {
         authorsRepo.deleteById(id);
     }
+
+    @Override
+    public List<Author> saveAuthorList(Iterable<Author> authorList) {
+        return authorsRepo.saveAll(authorList);
+    }
 }

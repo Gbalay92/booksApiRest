@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rcv.initialspring.models.Book;
+import com.rcv.initialspring.repositories.BooksRepository;
 import com.rcv.initialspring.services.IBookService;
 
 @RestController
@@ -38,6 +40,14 @@ public class BookController {
         return bookService.findBookById(id);
     }
 
+    @GetMapping("/example") // objeto example, es un objeto que contiene otro Object(book)
+    public List<Book> getQueryParams(@RequestParam String category, int publisher) {
+        Book book = new Book();
+        book.setCategory(category);
+        book.setPublisher(publisher);
+        return bookService.finByExample(book);
+    }
+
     @PutMapping("/")
     public Book updateBookById(@RequestBody Book book) {
         return bookService.updateBookById(book);
@@ -53,4 +63,5 @@ public class BookController {
 
         return "autor borrado";
     }
+
 }

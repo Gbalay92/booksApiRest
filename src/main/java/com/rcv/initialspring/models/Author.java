@@ -1,6 +1,13 @@
 package com.rcv.initialspring.models;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,6 +22,9 @@ public class Author {
     private String firstName;
     private String lastName;
     private String nationality;
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "authors")
+    @JsonIgnore
+    private List<Book> books;
 
     public Long getId() {
         return id;
@@ -47,4 +57,13 @@ public class Author {
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
 }
